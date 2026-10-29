@@ -6,6 +6,8 @@ All data is from September 2025 and includes warehouse, category, and date field
 
 import json
 import os
+import tempfile
+import threading
 
 # Get the directory where this file is located
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -34,6 +36,38 @@ recent_transactions = load_json_file('transactions.json')
 
 # Load purchase orders
 purchase_orders = load_json_file('purchase_orders.json')
+
+# Restocking orders are the only data the API writes. The file is gitignored and
+# created on first write. RESTOCK_ORDERS_PATH lets tests redirect it to a temp file.
+RESTOCK_ORDERS_PATH = os.environ.get('RESTOCK_ORDERS_PATH', os.path.join(DATA_DIR, 'restock_orders.json'))
+_restock_orders_lock = threading.Lock()
+
+def load_restock_orders(path=None):
+    """Load submitted restocking orders, or an empty list when the file does not exist yet"""
+    path = path or RESTOCK_ORDERS_PATH
+    if not os.path.exists(path):
+        return []
+    with open(path, 'r') as f:
+        return json.load(f)
+
+def save_restock_orders(orders, path=None):
+    """Write restocking orders to disk atomically"""
+    path = path or RESTOCK_ORDERS_PATH
+    # Sync FastAPI handlers run in a threadpool, so two submits can overlap. The lock
+    # serializes writers, and temp file + os.replace means a reader never sees a
+    # half-written file.
+    with _restock_orders_lock:
+        directory = os.path.dirname(path) or '.'
+        fd, tmp_path = tempfile.mkstemp(dir=directory, suffix='.tmp')
+        try:
+            with os.fdopen(fd, 'w') as f:
+                json.dump(orders, f, indent=2)
+            os.replace(tmp_path, path)
+        except Exception:
+            os.remove(tmp_path)
+            raise
+
+restock_orders = load_restock_orders()
 
 # All data is now loaded from JSON files in the data/ directory
 # This allows for easier maintenance and updates of the sample data
