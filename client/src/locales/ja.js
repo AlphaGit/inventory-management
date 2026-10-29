@@ -6,8 +6,13 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    restocking: '補充発注',
     companyName: '触媒コンポーネンツ',
-    subtitle: '在庫管理システム'
+    subtitle: '在庫管理システム',
+    toggleMenu: 'ナビゲーションの切り替え',
+    mainNavigation: 'メインナビゲーション',
+    collapseSidebar: 'サイドバーを折りたたむ',
+    expandSidebar: 'サイドバーを展開'
   },
 
   // Dashboard
@@ -112,6 +117,21 @@ export default {
     onTimeDelivery: '定時配達',
     itemsCount: '{count}件',
     quantity: '数量',
+    submitted: {
+      title: '発注済みの注文',
+      empty: '発注済みの補充注文はまだありません',
+      loadFailed: '発注済みの注文の読み込みに失敗しました',
+      leadTimeDays: '{count}日',
+      table: {
+        orderNumber: '注文番号',
+        submittedDate: '発注日',
+        items: '品目',
+        totalCost: '合計コスト',
+        leadTime: 'リードタイム',
+        expectedDelivery: '納品予定日',
+        status: 'ステータス'
+      }
+    },
     table: {
       orderNumber: '注文番号',
       orderId: '注文ID',
@@ -189,6 +209,53 @@ export default {
   },
 
   // Filters
+  // 補充発注
+  restocking: {
+    title: '補充発注',
+    description: '予測需要に基づく推奨発注数量を、予算の範囲内で提示します',
+    filtersNote: 'グローバルフィルターはこのページには適用されません。補充発注は全社共通です。',
+    loadFailed: '補充の推奨データの読み込みに失敗しました',
+    budget: '予算',
+    budgetSlider: '予算スライダー',
+    budgetInput: '予算額',
+    maxBudget: '上限 {amount}',
+    updating: '推奨内容を更新中...',
+    recommendedItems: '推奨品目',
+    noLines: '補充が必要な価格設定済みの品目はありません',
+    table: {
+      item: '品目',
+      trend: 'トレンド',
+      forecast: '予測需要',
+      onHand: '在庫数',
+      need: '必要数',
+      unitCost: '単価',
+      leadTime: 'リードタイム',
+      quantity: '発注数量',
+      lineTotal: '小計'
+    },
+    days: '{count}日',
+    defaultLeadTime: '既定値',
+    edited: '編集済み',
+    reset: '推奨値に戻す',
+    summary: {
+      budget: '予算',
+      orderTotal: '注文合計',
+      remaining: '残額'
+    },
+    overBudget: '注文合計が予算を {amount} 超えています。数量を減らしてから発注してください。',
+    placeOrder: '発注する',
+    placing: '発注中...',
+    orderPlaced: '注文 {number} を発注しました。納品予定日: {date}',
+    viewInOrders: '注文一覧で確認',
+    placeFailed: '発注に失敗しました',
+    needsPricing: {
+      title: '価格設定が必要',
+      description: 'これらの品目は、仕入先の価格が登録されるまで推奨対象から除外されます。',
+      forecast: '予測需要',
+      need: '必要数'
+    }
+  },
+
   filters: {
     timePeriod: '期間',
     location: '場所',
@@ -200,6 +267,7 @@ export default {
 
   // Statuses
   status: {
+    submitted: '発注済み',
     delivered: '配達済み',
     shipped: '出荷済み',
     processing: '処理中',

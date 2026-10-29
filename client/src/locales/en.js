@@ -6,8 +6,13 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    restocking: 'Restocking',
     companyName: 'Catalyst Components',
-    subtitle: 'Inventory Management System'
+    subtitle: 'Inventory Management System',
+    toggleMenu: 'Toggle navigation',
+    mainNavigation: 'Main navigation',
+    collapseSidebar: 'Collapse sidebar',
+    expandSidebar: 'Expand sidebar'
   },
 
   // Dashboard
@@ -112,6 +117,21 @@ export default {
     onTimeDelivery: 'On-Time Delivery',
     itemsCount: '{count} items',
     quantity: 'Qty',
+    submitted: {
+      title: 'Submitted Orders',
+      empty: 'No restock orders have been submitted yet',
+      loadFailed: 'Failed to load submitted orders',
+      leadTimeDays: '{count} days',
+      table: {
+        orderNumber: 'Order Number',
+        submittedDate: 'Submitted',
+        items: 'Items',
+        totalCost: 'Total Cost',
+        leadTime: 'Lead Time',
+        expectedDelivery: 'Expected Delivery',
+        status: 'Status'
+      }
+    },
     table: {
       orderNumber: 'Order Number',
       orderId: 'Order ID',
@@ -189,6 +209,53 @@ export default {
   },
 
   // Filters
+  // Restocking
+  restocking: {
+    title: 'Restocking',
+    description: 'Recommended purchase quantities based on forecasted demand, within your budget',
+    filtersNote: 'Global filters do not apply to this page. Restocking is company-wide.',
+    loadFailed: 'Failed to load restock recommendations',
+    budget: 'Budget',
+    budgetSlider: 'Budget slider',
+    budgetInput: 'Budget amount',
+    maxBudget: 'Max {amount}',
+    updating: 'Updating recommendation...',
+    recommendedItems: 'Recommended Items',
+    noLines: 'No priced items need restocking',
+    table: {
+      item: 'Item',
+      trend: 'Trend',
+      forecast: 'Forecast',
+      onHand: 'On Hand',
+      need: 'Need',
+      unitCost: 'Unit Cost',
+      leadTime: 'Lead Time',
+      quantity: 'Order Qty',
+      lineTotal: 'Line Total'
+    },
+    days: '{count} days',
+    defaultLeadTime: 'default',
+    edited: 'Edited',
+    reset: 'Reset to recommendation',
+    summary: {
+      budget: 'Budget',
+      orderTotal: 'Order Total',
+      remaining: 'Remaining'
+    },
+    overBudget: 'Order total exceeds the budget by {amount}. Reduce quantities to place the order.',
+    placeOrder: 'Place Order',
+    placing: 'Placing order...',
+    orderPlaced: 'Order {number} placed. Expected delivery {date}',
+    viewInOrders: 'View in Orders',
+    placeFailed: 'Failed to place order',
+    needsPricing: {
+      title: 'Needs Pricing',
+      description: 'These items are excluded from recommendations until a supplier cost is available.',
+      forecast: 'Forecast',
+      need: 'Need'
+    }
+  },
+
   filters: {
     timePeriod: 'Time Period',
     location: 'Location',
@@ -200,6 +267,7 @@ export default {
 
   // Statuses
   status: {
+    submitted: 'Submitted',
     delivered: 'Delivered',
     shipped: 'Shipped',
     processing: 'Processing',
