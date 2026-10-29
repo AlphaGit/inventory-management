@@ -1,0 +1,41 @@
+{
+  "skill_name": "vue-saas-redesign",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our inventory app looks dated. Redesign it to a modern SaaS look with a left sidebar instead of the top nav. For now only do the app shell and the Dashboard (Overview) page.",
+      "expected_output": "Top nav replaced by a left sidebar with all existing routes and a clear active state; header widgets (language switcher, profile menu, filter bar) relocated; Dashboard restyled with tokens; existing palette kept; no logic, route or i18n key changes; build passes.",
+      "files": [],
+      "assertions": [
+        "Top nav bar replaced by a left sidebar nav (aside/sidebar element in the app shell)",
+        "All 6 existing nav routes still linked from the shell (/, /inventory, /orders, /spending, /demand, /reports)",
+        "Active nav state follows the route (aria-current or active class bound to the route)",
+        "No new dependencies (package.json unchanged)",
+        "No data-layer or routing changes (api.js, composables, main.js untouched)",
+        "Every translation key used in changed templates exists in both en.js and ja.js",
+        "Palette kept: at most 3 hex colors added that the app did not already use",
+        "No emojis added to the UI",
+        "Production build passes"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "the orders page feels cramped and inconsistent. can you move the navigation into a sidebar like linear/vercel and clean up the spacing on the Orders screen? keep our colors, and make sure it works on mobile too",
+      "expected_output": "Left sidebar shell that becomes a drawer on mobile; Orders screen spacing normalized to a scale; existing palette kept; no horizontal overflow at 390px; no logic changes; build passes.",
+      "files": [],
+      "assertions": [
+        "Top nav bar replaced by a left sidebar nav (aside/sidebar element in the app shell)",
+        "All 6 existing nav routes still linked from the shell (/, /inventory, /orders, /spending, /demand, /reports)",
+        "Active nav state follows the route (aria-current or active class bound to the route)",
+        "No new dependencies (package.json unchanged)",
+        "No data-layer or routing changes (api.js, composables, main.js untouched)",
+        "Every translation key used in changed templates exists in both en.js and ja.js",
+        "Palette kept: at most 3 hex colors added that the app did not already use",
+        "No emojis added to the UI",
+        "Production build passes",
+        "Mobile pattern present: a menu toggle with aria-expanded and a media query that hides/collapses the sidebar",
+        "Orders view spacing changed (Orders.vue styles edited)"
+      ]
+    }
+  ]
+}

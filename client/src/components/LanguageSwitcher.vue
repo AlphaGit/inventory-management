@@ -93,29 +93,43 @@ const selectLanguage = (locale) => {
   position: relative;
 }
 
+/* Ghost button that sits in the content header (tokens come from App.vue) */
 .language-button {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.875rem;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  gap: var(--space-2);
+  height: 36px;
+  padding: 0 var(--space-3);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 150ms ease, color 150ms ease;
   font-family: inherit;
-  font-size: 0.875rem;
-  color: #334155;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
 }
 
 .language-button:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: var(--color-surface-muted);
+  color: var(--color-text);
 }
 
 .globe-icon {
-  color: #64748b;
+  color: var(--color-text-muted);
   flex-shrink: 0;
+}
+
+/* Mobile: icon-only, the language name stays in the dropdown */
+@media (max-width: 767px) {
+  .language-label {
+    display: none;
+  }
+
+  .language-button {
+    gap: var(--space-1);
+    padding: 0 var(--space-2);
+  }
 }
 
 .language-label {

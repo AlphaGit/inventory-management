@@ -61,3 +61,16 @@ def sample_order():
         "total_value": 87799.5,
         "actual_delivery": "2025-01-20T10:19:00"
     }
+
+
+@pytest.fixture(autouse=True)
+def restock_store(tmp_path, monkeypatch):
+    """Redirect restocking order writes to a temp file so tests never touch server/data."""
+    import mock_data
+
+    path = tmp_path / "restock_orders.json"
+    monkeypatch.setattr(mock_data, "RESTOCK_ORDERS_PATH", str(path))
+    # main.py holds a reference to the same list object, so clear it in place
+    mock_data.restock_orders.clear()
+    yield path
+    mock_data.restock_orders.clear()
